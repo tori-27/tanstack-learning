@@ -1,0 +1,129 @@
+{
+    "tasks": [
+        {
+            "id": "1",
+            "text": "Buy groceries",
+            "done": false
+        },
+        {
+            "id": "2",
+            "text": "Finish project report",
+            "done": true
+        },
+        {
+            "id": "3",
+            "text": "Go for a run",
+            "done": false
+        },
+        {
+            "id": "4",
+            "text": "Read a book",
+            "done": true
+        },
+        {
+            "id": "5",
+            "text": "Write a blog post",
+            "done": false
+        },
+        {
+            "id": "6",
+            "text": "Call mom",
+            "done": true
+        },
+        {
+            "id": "7",
+            "text": "Schedule doctor appointment",
+            "done": false
+        },
+        {
+            "id": "8",
+            "text": "Update LinkedIn profile",
+            "done": false
+        },
+        {
+            "id": "9",
+            "text": "Plan weekend trip",
+            "done": true
+        },
+        {
+            "id": "10",
+            "text": "Clean the house",
+            "done": false
+        },
+        {
+            "id": "11",
+            "text": "Respond to emails",
+            "done": true
+        },
+        {
+            "id": "12",
+            "text": "Fix the leaky faucet",
+            "done": false
+        },
+        {
+            "id": "13",
+            "text": "Water the plants",
+            "done": true
+        },
+        {
+            "id": "14",
+            "text": "Go to the gym",
+            "done": false
+        },
+        {
+            "id": "15",
+            "text": "Cook dinner",
+            "done": true
+        },
+        {
+            "id": "16",
+            "text": "Write meeting notes",
+            "done": false
+        },
+        {
+            "id": "17",
+            "text": "Buy a gift for a friend",
+            "done": true
+        },
+        {
+            "id": "18",
+            "text": "Practice coding",
+            "done": false
+        },
+        {
+            "id": "19",
+            "text": "Prepare presentation",
+            "done": false
+        },
+        {
+            "id": "20",
+            "text": "Watch a tutorial",
+            "done": true
+        },
+        {
+            "id": "21",
+            "text": "Organize workspace",
+            "done": false
+        },
+        {
+            "id": "22",
+            "text": "Meditate for 10 minutes",
+            "done": true
+        },
+        {
+            "id": "23",
+            "text": "Take the dog for a walk",
+            "done": false
+        },
+        {
+            "id": "24",
+            "text": "Plan monthly budget",
+            "done": true
+        },
+        {
+            "id": "25",
+            "text": "Check car maintenance",
+            "done": false
+        }
+    ]
+}

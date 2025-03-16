@@ -1,34 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
+import { todoListApi } from "./api";
 
-type Todo = {
-    id: string,
-    text: string,
-    done: boolean,
-}
-
-export const getTasks = () =>{
-    return new Promise<Todo[]>((resolve) => {
-        setTimeout(() => {
-            resolve([
-                {
-                    id: "1",
-                    text: 'todo1',
-                    done: false
-                },
-                {
-                    id: "2",
-                    text: 'todo2',
-                    done: false
-                },
-            ]);
-        }, 1000)
-    });
-};
 
 export function TodoList() {
     const {data, error, isLoading} = useQuery({
         queryKey: ["tasks", "list"],
-        queryFn: getTasks
+        queryFn: todoListApi.getTodoList
     })
     if(isLoading){
         return(
@@ -42,6 +19,14 @@ export function TodoList() {
         )
     }
     return(
-        <div>{data?.map(todo => <div key={todo.id}>{todo.text}</div>)}</div>
+        <div className="p-5 mx-auto max-w-[1200px] mt-10">
+            <h1 className="text-3xl font-bold underline mb-5">Todo List</h1>
+            <div className="flex flex-col gap-4">
+                {data?.map(todo => (
+                    <div className="border border-slate-300 rounded p-3" key={todo.id}>{todo.text}</div>
+                ))}
+            </div>
+            
+        </div>
     )
 }
