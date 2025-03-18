@@ -1,17 +1,30 @@
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
+import { useTodoList } from "./useTodoList";
 import { todoListApi } from "./api";
-import { useState } from "react";
-
+import { nanoid } from "nanoid";
 
 export function TodoList() {
-    const [page, setPage] = useState(1);
+    const {error, cursor, isLoading, todoItems} = useTodoList()
 
-
-    const {data: todoItems, error, isLoading, isPlaceholderData} = useQuery({
-        queryKey: ["tasks", "list", { page }],
-        queryFn: (meta) => todoListApi.getTodoList({page}, meta),
-        placeholderData: keepPreviousData
+    const createTodoMutation = useMutation({
+        mutationFn: todoListApi.createTodo
     })
+
+    const handleCreate = (e: React.FormEvent<HTMLFormElement>) => {
+        const formData = new FormData(e.currentTarget)
+
+        const text = String(formData.get('text') ?? '')
+
+        createTodoMutation.mutate({
+            id: nanoid(),
+            done: false,
+            text: text,
+            userId: '1'
+        })
+
+        e.currentTarget.reset()
+    }
+
     if(isLoading){
         return(
             <div>Loading...</div>
@@ -23,20 +36,22 @@ export function TodoList() {
             <div>error: {JSON.stringify(error)}</div>
         )
     }
+
     return(
         <div className="p-5 mx-auto max-w-[1200px] mt-10">
             <h1 className="text-3xl font-bold underline mb-5">Todo List</h1>
 
-            <div className={"flex flex-col gap-4" + (isPlaceholderData ? ' opacity-50' : '')}>
-                {todoItems?.data.map(todo => (
+            <form className="flex gap-2 mb-5" onSubmit={handleCreate}>
+                <input className="rounded p-2 border border-teal-500" type="text" name="text"/>
+                <button className="rounded p-2 border border-teal-500">Create</button>
+            </form>
+            <div className={"flex flex-col gap-4"}>
+                {todoItems?.map(todo => (
                     <div className="border border-slate-300 rounded p-3" key={todo.id}>{todo.text}</div>
                 ))}
             </div>
-            <div className="flex gap-2 mt-4">
-                <button onClick={() => setPage(p =>  Math.max(p - 1, 1))} className="p-3 rounded border border-teal-500">prev</button>
-                <button onClick={() => setPage(p => Math.min(p + 1, todoItems?.pages || 15))} className="p-3 rounded border border-teal-500">next</button>
-            </div>
-            
+           {cursor}
         </div>
     )
 }
+
